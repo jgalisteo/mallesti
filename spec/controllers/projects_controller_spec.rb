@@ -7,6 +7,7 @@ RSpec.describe ProjectsController, type: :controller do
   json_attributes = FactoryGirl.attributes_for(:project).keys
 
   before :all do
+    @user = FactoryGirl.create(:user)
     @model = Project
 
     # Mis proyectos necesitan un cliente
@@ -29,6 +30,10 @@ RSpec.describe ProjectsController, type: :controller do
 
     # Para el test de update
     @update_params = FactoryGirl.attributes_for(:project_update)
+  end
+
+  before do
+    sign_in @user
   end
 
   it_behaves_like "a REST controller", options, json_attributes

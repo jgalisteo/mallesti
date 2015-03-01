@@ -7,6 +7,8 @@ RSpec.describe CustomersController, type: :controller do
   json_attributes = FactoryGirl.attributes_for(:customer).keys
 
   before :all do
+    @user = FactoryGirl.create(:user)
+
     # Para todos los tests
     @model = Customer
 
@@ -21,6 +23,10 @@ RSpec.describe CustomersController, type: :controller do
 
     # Para el test de update
     @update_params = FactoryGirl.attributes_for(:customer_update)
+  end
+
+  before do
+    sign_in @user
   end
 
   it_behaves_like "a REST controller", options, json_attributes
