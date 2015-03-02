@@ -13,13 +13,14 @@ RSpec.describe CustomersController, type: :controller do
     @model = Customer
 
     # Para el test de show
-    @resource = FactoryGirl.create(:customer)
+    @resource = FactoryGirl.create(:customer, user: @user)
 
     # Para el test de index
-    @first_page_resources = Customer.all
+    @list_options = {user: @user}
+    @first_page_resources = @user.customers
 
     # Para el test de create y destroy
-    @parameters = FactoryGirl.attributes_for(:customer)
+    @parameters = FactoryGirl.attributes_for(:customer, user_id: @user.id.to_s)
 
     # Para el test de update
     @update_params = FactoryGirl.attributes_for(:customer_update)

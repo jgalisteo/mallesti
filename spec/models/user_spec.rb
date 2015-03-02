@@ -9,6 +9,10 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_field(:authentication_token).of_type(String) }
   end
 
+  context "Relations" do
+    it { is_expected.to have_many(:customers) }
+  end
+
   context "Custom methods" do
     context "auth token" do
       let(:user){ FactoryGirl.create(:user, authentication_token: nil) }

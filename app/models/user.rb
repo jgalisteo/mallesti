@@ -38,6 +38,9 @@ class User
   ## Token authenticatable
   field :authentication_token, type: String
 
+  # Relations
+  has_many :customers
+
   # Generate an auth token
   def ensure_authentication_token!
     if self.authentication_token.blank?

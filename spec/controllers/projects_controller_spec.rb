@@ -11,7 +11,8 @@ RSpec.describe ProjectsController, type: :controller do
     @model = Project
 
     # Mis proyectos necesitan un cliente
-    customer = FactoryGirl.create(:customer)
+    customer = FactoryGirl.create(:customer, user: @user)
+
     # Para el test de show
     @resource = FactoryGirl.create(:project, customer: customer)
 
@@ -39,8 +40,8 @@ RSpec.describe ProjectsController, type: :controller do
   it_behaves_like "a REST controller", options, json_attributes
 
   context "special feature" do
-    let(:customer1){ FactoryGirl.create(:customer) }
-    let(:customer2){ FactoryGirl.create(:customer) }
+    let(:customer1){ FactoryGirl.create(:customer, user: @user) }
+    let(:customer2){ FactoryGirl.create(:customer, user: @user) }
 
     context "GET #index" do
       it "returns the correct tasks" do

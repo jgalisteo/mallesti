@@ -11,7 +11,9 @@ RSpec.describe TasksController, type: :controller do
     @model = Task
 
     # Mis tareas necesitan un proyecto
-    project = FactoryGirl.create(:project)
+    @customer = FactoryGirl.create(:customer, user: @user)
+    project = FactoryGirl.create(:project, customer: @customer)
+
     # Para el test de show
     @resource = FactoryGirl.create(:task, project: project)
 
@@ -39,8 +41,8 @@ RSpec.describe TasksController, type: :controller do
   it_behaves_like "a REST controller", options, json_attributes
 
   context "special feature" do
-    let(:project1){ FactoryGirl.create(:project) }
-    let(:project2){ FactoryGirl.create(:project) }
+    let(:project1){ FactoryGirl.create(:project, customer: @customer) }
+    let(:project2){ FactoryGirl.create(:project, customer: @customer) }
 
     context "GET #index" do
       it "returns the correct tasks" do

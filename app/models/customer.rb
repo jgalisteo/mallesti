@@ -12,8 +12,10 @@ class Customer
   field :email,     type: String
   field :phone,     type: String
 
-  has_many :projects
+  belongs_to :user
+  has_many   :projects
 
+  validates :user,    presence: true
   validates :name,    presence: true
   validates :phone,   presence: true
   validates :address, presence: true

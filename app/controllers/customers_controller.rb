@@ -7,12 +7,12 @@ class CustomersController < ApplicationController
   end
 
   def index
-    @customers = Customer.all
+    @customers = current_user.customers
     respond_with @customers
   end
 
   def create
-    @customer = Customer.create(customer_params)
+    @customer = current_user.customers.create(customer_params)
     respond_with @customer
   end
 

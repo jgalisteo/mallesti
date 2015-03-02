@@ -19,6 +19,7 @@ RSpec.describe Customer, type: :model do
 
   context "Relations" do
     it { is_expected.to have_many(:projects) }
+    it { is_expected.to belong_to(:user) }
   end
 
   context 'Validations' do
@@ -30,6 +31,7 @@ RSpec.describe Customer, type: :model do
     it { is_expected.to validate_presence_of(:city) }
     it { is_expected.to validate_presence_of(:country) }
     it { is_expected.to validate_presence_of(:cif) }
+    it { is_expected.to validate_presence_of(:user) }
 
     it { is_expected.to validate_uniqueness_of(:cif).case_insensitive }
     it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
