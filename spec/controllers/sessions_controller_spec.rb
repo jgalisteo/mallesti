@@ -49,20 +49,20 @@ RSpec.describe SessionsController, type: :controller do
         end
       end
 
-      context "unconfirmed" do
-        before do
-          user.update_attribute(:confirmed_at, nil)
-          post :create, email: user.email, password: password
-        end
+      #context "unconfirmed" do
+        #before do
+          #user.update_attribute(:confirmed_at, nil)
+          #post :create, email: user.email, password: password
+        #end
 
-        it "returns 401 HTTP status code" do
-          expect(response).to have_http_status :unauthorized
-        end
+        #it "returns 401 HTTP status code" do
+          #expect(response).to have_http_status :unauthorized
+        #end
 
-        it "returns 'invalid' message" do
-          expect(response_body_json['errors']).to eql ['unconfirmed']
-        end
-      end
+        #it "returns 'invalid' message" do
+          #expect(response_body_json['errors']).to eql ['unconfirmed']
+        #end
+      #end
     end
   end
 end

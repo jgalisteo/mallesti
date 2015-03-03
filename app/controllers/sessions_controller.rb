@@ -6,12 +6,14 @@ class SessionsController < Devise::SessionsController
     user = User.find_for_database_authentication(email: params[:email])
 
     if user and user.valid_password?(params[:password])
-      if user.confirmed?
-        user.ensure_authentication_token!  # make sure the user has a token generate
-        render json: user, status: :created
-      else
-        return unconfirmed
-      end
+      user.ensure_authentication_token!  # make sure the user has a token generate
+      render json: user, status: :created
+      #if user.confirmed?
+        #user.ensure_authentication_token!  # make sure the user has a token generate
+        #render json: user, status: :created
+      #else
+        #return unconfirmed
+      #end
     else
       return invalid_login_attempt
     end
