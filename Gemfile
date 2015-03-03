@@ -22,9 +22,6 @@ group :development do
   # Precarga rails y hace que los tests tarden menos en empezar
   gem 'spring'
   gem 'spring-commands-rspec'
-
-  # super simple SMTP server
-  gem 'mailcatcher'
 end
 
 # Estas gemas sólo se usan en el entorno de test
