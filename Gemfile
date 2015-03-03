@@ -33,6 +33,9 @@ group :development do
 
   gem 'guard-livereload', '~> 2.4', require: false
   gem 'rack-livereload'
+
+  # super simple SMTP server
+  gem 'mailcatcher'
 end
 
 # Estas gemas sólo se usan en el entorno de test
