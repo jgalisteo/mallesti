@@ -8,7 +8,6 @@ RSpec.describe UsersController, type: :controller do
     let(:email){ FactoryGirl.attributes_for(:user)[:email] }
     let(:password){ FactoryGirl.attributes_for(:user)[:password] }
 
-
     after do
       DatabaseCleaner.clean
     end

@@ -1,4 +1,6 @@
 class UsersController < Devise::RegistrationsController
+  respond_to :json
+
   # POST /resource
   def create
     build_resource(sign_up_params)
