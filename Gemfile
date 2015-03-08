@@ -14,6 +14,14 @@ gem 'active_model_serializers'
 
 gem 'rack-cors'
 
+## Assets
+gem 'bootstrap-sass'
+gem 'angular-rails-templates'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angular'
+  gem 'rails-assets-angular-ui-router'
+end
+
 # Estas gemas sólo se usan en el entorno de desarrollo (development)
 group :development do
   # Consola para trabajar en el entorno de desarrollo (development) más bonita
@@ -22,6 +30,9 @@ group :development do
   # Precarga rails y hace que los tests tarden menos en empezar
   gem 'spring'
   gem 'spring-commands-rspec'
+
+  gem 'guard-livereload', '~> 2.4', require: false
+  gem 'rack-livereload'
 end
 
 # Estas gemas sólo se usan en el entorno de test

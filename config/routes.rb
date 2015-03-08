@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # La ruta "raíz" va a devolver el html básico
+  root to: "main#main"
+
   # Rutas para los recursos relacionados con Customer
   resources :customers, except: [:new, :edit] do
   # Rutas para los recursos relacionados con Project
