@@ -16,7 +16,7 @@
         )
           .success(function(data) {
             AuthService.saveUser(data.user);
-            $state.go("customers");
+            $state.go("main.customers");
           })
           .error(function(data) {
             scope.session = {};
@@ -44,7 +44,7 @@
         )
           .success(function(data) {
             AuthService.saveUser(data.user);
-            $state.go("customers");
+            $state.go("main.customers");
           })
           .error(function(data) {
             scope.errors = data.errors

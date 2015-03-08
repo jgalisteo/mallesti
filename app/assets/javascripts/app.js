@@ -31,7 +31,7 @@
         data: {
           permissions: {
             only: ['anonymous'],
-            redirectTo: "customers"
+            redirectTo: "main.customers"
           }
         }
       })
@@ -43,39 +43,46 @@
         data: {
           permissions: {
             only: ['anonymous'],
-            redirectTo: "customers"
+            redirectTo: "main.customers"
           }
         }
       })
-      .state("customers", {
-        url: "/customers",
+      .state("main", {
+        url: "/",
+        templateUrl: "main.html",
+        data: {
+          permissions: {
+            only: ['member'],
+            redirectTo: "login"
+          }
+        }
+      })
+      .state("main.customers", {
+        url: "customers",
         templateUrl:  "customers-list.html",
         controller:   "CustomersController",
         controllerAs: "customersCtrl",
-        data: {
-          permissions: {
-            only: ['member'],
-            redirectTo: "login"
-          }
-        }
       })
-      .state("customer", {
-        url: "/customers/:id",
+      .state("main.customer", {
+        url: "customers/:id",
         templateUrl:  "customer-info.html",
         controller:   "CustomerController",
         controllerAs: "customerCtrl",
-        data: {
-          permissions: {
-            only: ['member'],
-            redirectTo: "login"
-          }
-        }
       })
   });
 
   app.run(function($rootScope) {
     $rootScope.disableForm = function(model) {
       return Object.getOwnPropertyNames(model).length === 0;
+    };
+  });
+
+  app.directive("mallestiNav", function() {
+    return {
+      restrict: "E",
+      templateUrl: "navbar.html",
+      controller: "LoginController",
+      controllerAs: "loginCtrl"
     };
   });
 })();

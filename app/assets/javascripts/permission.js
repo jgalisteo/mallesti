@@ -7,7 +7,6 @@
         return !AuthService.currentUser();
       })
       .defineRole('member', function() {
-        console.log(AuthService.currentUser());
         return AuthService.currentUser();
       });
   });
