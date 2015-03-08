@@ -4,12 +4,17 @@
       <th>Nombre</th>
       <th>Email</th>
       <th>&nbsp;</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="customer in customersCtrl.customers">
       <td>{{customer.name}}</td>
       <td>{{customer.email}}</td>
+      <td>
+        <a href="" ui-sref="customer({id: customer.id})" title="Ver">
+          <span class="glyphicon glyphicon-eye-open"></span>
+        </a>
       <td>
         <a href="" ng-click="customersCtrl.removeCustomer(customer)" title="Borrar">
           <span class="glyphicon glyphicon-trash"></span>

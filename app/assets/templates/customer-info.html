@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-6">
+    <customer-details></customer-details>
+    <a class="btn btn-primary" ui-sref="customers">Atrás</a>
+    <a class="btn btn-primary" href="" ng-click="customerCtrl.toggleForm()">Editar</a>
+  </div>
+  <div class="col-md-6" ng-if="customerCtrl.showForm">
+    <customer-form ctrl="customerCtrl"></customer-form>
+  </div>
+</div>

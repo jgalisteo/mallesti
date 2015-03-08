@@ -12,5 +12,17 @@
         controller:   "CustomersController",
         controllerAs: "customersCtrl"
       })
+      .state("customer", {
+        url: "/customers/:id",
+        templateUrl:  "customer-info.html",
+        controller:   "CustomerController",
+        controllerAs: "customerCtrl"
+      })
+  });
+
+  app.run(function($rootScope) {
+    $rootScope.disableForm = function(model) {
+      return Object.getOwnPropertyNames(model).length === 0;
+    };
   });
 })();

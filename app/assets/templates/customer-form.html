@@ -1,75 +1,75 @@
-<form ng-submit="customersCtrl.addCustomer()">
-  <div class="form-group" ng-class="{ 'has-error': customersCtrl.errors.name }">
+<form ng-submit="ctrl.save()">
+  <div class="form-group" ng-class="{ 'has-error': ctrl.errors.name }">
     <label for="customerName">Nombre</label>
     <input type="text" id="customerName" class="form-control"
-    ng-model="customersCtrl.newCustomer.name">
-    <div class="alert alert-danger" ng-if="customersCtrl.errors.name">
-      {{customersCtrl.errors.name.join(", ")}}
+    ng-model="ctrl.model.name">
+    <div class="alert alert-danger" ng-if="ctrl.errors.name">
+      {{ctrl.errors.name.join(", ")}}
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-error': customersCtrl.errors.address }">
+  <div class="form-group" ng-class="{ 'has-error': ctrl.errors.address }">
     <label for="customerAddress">Dirección</label>
     <input type="text" id="customerAddress" class="form-control"
-    ng-model="customersCtrl.newCustomer.address">
-    <div class="alert alert-danger" ng-if="customersCtrl.errors.address">
-      {{customersCtrl.errors.address.join(", ")}}
+    ng-model="ctrl.model.address">
+    <div class="alert alert-danger" ng-if="ctrl.errors.address">
+      {{ctrl.errors.address.join(", ")}}
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-error': customersCtrl.errors.town }">
+  <div class="form-group" ng-class="{ 'has-error': ctrl.errors.town }">
     <label for="customerTown">Localidad</label>
     <input type="text" id="customerTown" class="form-control"
-    ng-model="customersCtrl.newCustomer.town">
-    <div class="alert alert-danger" ng-if="customersCtrl.errors.town">
-      {{customersCtrl.errors.town.join(", ")}}
+    ng-model="ctrl.model.town">
+    <div class="alert alert-danger" ng-if="ctrl.errors.town">
+      {{ctrl.errors.town.join(", ")}}
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-error': customersCtrl.errors.city }">
+  <div class="form-group" ng-class="{ 'has-error': ctrl.errors.city }">
     <label for="customerCity">Provincia</label>
     <input type="text" id="customerCity" class="form-control"
-    ng-model="customersCtrl.newCustomer.city">
-    <div class="alert alert-danger" ng-if="customersCtrl.errors.city">
-      {{customersCtrl.errors.city.join(", ")}}
+    ng-model="ctrl.model.city">
+    <div class="alert alert-danger" ng-if="ctrl.errors.city">
+      {{ctrl.errors.city.join(", ")}}
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-error': customersCtrl.errors.zip_code }">
+  <div class="form-group" ng-class="{ 'has-error': ctrl.errors.zip_code }">
     <label for="customerZipCode">Código Postal</label>
     <input type="text" id="customerZipCode" class="form-control"
-    ng-model="customersCtrl.newCustomer.zip_code">
-    <div class="alert alert-danger" ng-if="customersCtrl.errors.zip_code">
-      {{customersCtrl.errors.zip_code.join(", ")}}
+    ng-model="ctrl.model.zip_code">
+    <div class="alert alert-danger" ng-if="ctrl.errors.zip_code">
+      {{ctrl.errors.zip_code.join(", ")}}
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-error': customersCtrl.errors.country }">
+  <div class="form-group" ng-class="{ 'has-error': ctrl.errors.country }">
     <label for="customerCountry">País</label>
     <input type="text" id="customerCountry" class="form-control"
-    ng-model="customersCtrl.newCustomer.country">
-    <div class="alert alert-danger" ng-if="customersCtrl.errors.country">
-      {{customersCtrl.errors.country.join(", ")}}
+    ng-model="ctrl.model.country">
+    <div class="alert alert-danger" ng-if="ctrl.errors.country">
+      {{ctrl.errors.country.join(", ")}}
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-error': customersCtrl.errors.cif }">
+  <div class="form-group" ng-class="{ 'has-error': ctrl.errors.cif }">
     <label for="customerCif">Cif</label>
     <input type="text" id="customerCif" class="form-control"
-    ng-model="customersCtrl.newCustomer.cif">
-    <div class="alert alert-danger" ng-if="customersCtrl.cif.name">
-      {{customersCtrl.errors.cif.join(", ")}}
+    ng-model="ctrl.model.cif">
+    <div class="alert alert-danger" ng-if="ctrl.cif.name">
+      {{ctrl.errors.cif.join(", ")}}
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-error': customersCtrl.errors.email }">
+  <div class="form-group" ng-class="{ 'has-error': ctrl.errors.email }">
     <label for="customerEmail">Email</label>
     <input type="text" id="customerEmail" class="form-control"
-    ng-model="customersCtrl.newCustomer.email">
-    <div class="alert alert-danger" ng-if="customersCtrl.errors.email">
-      {{customersCtrl.errors.email.join(", ")}}
+    ng-model="ctrl.model.email">
+    <div class="alert alert-danger" ng-if="ctrl.errors.email">
+      {{ctrl.errors.email.join(", ")}}
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-error': customersCtrl.errors.phone }">
+  <div class="form-group" ng-class="{ 'has-error': ctrl.errors.phone }">
     <label for="customerPhone">Teléfono</label>
     <input type="text" id="customerPhone" class="form-control"
-    ng-model="customersCtrl.newCustomer.phone">
-    <div class="alert alert-danger" ng-if="customersCtrl.errors.phone">
-      {{customersCtrl.errors.phone.join(", ")}}
+    ng-model="ctrl.model.phone">
+    <div class="alert alert-danger" ng-if="ctrl.errors.phone">
+      {{ctrl.errors.phone.join(", ")}}
     </div>
   </div>
-  <button type="submit" class="btn btn-primary" ng-disabled="customersCtrl.disableForm()">Crear</button>
+  <button type="submit" class="btn btn-primary" ng-disabled="disableForm(model)">Crear</button>
 </form>
