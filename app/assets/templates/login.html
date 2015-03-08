@@ -1,0 +1,21 @@
+<form class="form-signin" ng-submit="loginCtrl.login()">
+  <h2 class="form-signin-heading">Por favor, inicia sesión</h2>
+  <p ng-show="loginCtrl.error">Email o contraseña incorrectos</p>
+  <label for="inputEmail" class="sr-only">Email</label>
+  <div class="form-group">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email"
+    required="" autofocus="" ng-model="loginCtrl.session.email">
+  </div>
+  <label for="inputPassword" class="sr-only">Contraseña</label>
+  <div class="form-group">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña"
+    required="" ng-model="loginCtrl.session.password">
+  </div>
+  <!--<div class="checkbox">-->
+    <!--<label>-->
+      <!--<input type="checkbox" value="remember-me"> Remember me-->
+    <!--</label>-->
+  <!--</div>-->
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
+  <a ui-sref="sign_up" class="btn btn-lg btn-primary btn-block" id="sign_up">Registrarse</a>
+</form>
