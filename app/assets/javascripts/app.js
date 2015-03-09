@@ -5,15 +5,31 @@
   ]);
 
   // Esto pasa el token y el email en cada petición que hagamos a la API
-  app.factory("httpInterceptor", ['AuthService', function(AuthService) {
-    return {
-      request: function(config) {
-        config.headers['X-User-Email'] = AuthService.currentUserEmail();
-        config.headers['X-User-Token'] = AuthService.currentUserToken();
-        return config;
+  app.factory("httpInterceptor",
+    ['$q', '$injector', '$timeout','AuthService',
+      function($q, $injector, $timeout, AuthService) {
+        var $state;
+
+        $timeout(function(){
+          $state = $injector.get("$state");
+        });
+
+        return {
+          request: function(config) {
+            config.headers['X-User-Email'] = AuthService.currentUserEmail();
+            config.headers['X-User-Token'] = AuthService.currentUserToken();
+            return config;
+          },
+          responseError: function(rejection) {
+            if(rejection.status === 401) {
+              AuthService.destroyUser();
+              $state.go("login");
+            }
+            return $q.reject(rejection);
+          }
+        };
       }
-    };
-  }])
+  ])
 
   app.config(function($urlRouterProvider, $stateProvider, $httpProvider) {
     // Configuramos todas las peticiones para pasar el token de usuario

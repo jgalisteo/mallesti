@@ -50,7 +50,11 @@
     });
 
     scope.toggleForm = function() {
-      return scope.showForm = !scope.showForm;
+      scope.showForm = !scope.showForm;
+      if(!scope.showForm) {
+        scope.errors = {};
+        angular.copy(scope.customer, scope.model);
+      }
     };
 
     // Función para actualizar un cliente
