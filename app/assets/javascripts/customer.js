@@ -59,6 +59,7 @@
         .success(function() {
           angular.copy(scope.model, scope.customer);
           scope.showForm = false;
+          scope.errors = {};
         })
         .error(function(data) {
           scope.errors = data.errors
