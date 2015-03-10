@@ -31,4 +31,69 @@ RSpec.describe CustomersController, type: :controller do
   end
 
   it_behaves_like "a REST controller", options, json_attributes
+
+  context "special feature" do
+    context "GET #index" do
+      context "pagination" do
+        before :all do
+          @customers = FactoryGirl.create_list(:customer, 50, user: @user)
+        end
+
+        context "default" do
+          before do
+            get :index
+          end
+
+          it "returns 25 per page" do
+            expect(response_body_json['customers'].size).to eql 25
+          end
+
+          it "returns the current page" do
+            expect(response_body_json['meta']['currentPage']).to eql 1
+          end
+
+          it "returns the next page" do
+            expect(response_body_json['meta']['nextPage']).to eql 2
+          end
+
+          it "returns the previous page" do
+            expect(response_body_json['meta']['prevPage']).to be_nil
+          end
+
+          it "returns the number of pages" do
+            expect(response_body_json['meta']['totalPages']).to eql @user.customers.page.total_pages
+          end
+        end
+
+        context "with parameters" do
+          before do
+            @per_page = 10
+            @page = 2
+            get :index, page: @page, per: @per_page
+          end
+
+          it "returns the correct number of items" do
+            expect(response_body_json['customers'].size).to eql @per_page
+          end
+
+          it "returns the current page" do
+            expect(response_body_json['meta']['currentPage']).to eql @page
+          end
+
+          it "returns the next page" do
+            expect(response_body_json['meta']['nextPage']).to eql @page + 1
+          end
+
+          it "returns the previous page" do
+            expect(response_body_json['meta']['prevPage']).to eql @page - 1
+          end
+
+          it "returns the number of pages" do
+            expect(response_body_json['meta']['totalPages'])
+              .to eql @user.customers.page(@page).per(@per_page).total_pages
+          end
+        end
+      end
+    end
+  end
 end

@@ -102,6 +102,9 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     json (1.8.2)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (2.8.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -265,6 +268,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   guard-livereload (~> 2.4)
+  kaminari
   mailcatcher
   mongoid (~> 4.0.1)
   mongoid-rspec (~> 2.1.0)

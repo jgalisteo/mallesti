@@ -5,6 +5,9 @@ gem 'rails',   '4.2.0'
 # Convertir datos mongoDB en objetos de Ruby
 gem 'mongoid', '~> 4.0.1'
 
+# Para paginar nuestros listados
+gem 'kaminari'
+
 # Autenticar usuarios (login, registro, recordar contraseña, confirmar cuenta,
 # bloquear cuenta, seguimiento...)
 gem 'devise',  '~> 3.4.1'
@@ -12,6 +15,7 @@ gem 'devise',  '~> 3.4.1'
 # Convierte objetos de nuestros modelos en json
 gem 'active_model_serializers'
 
+# Para que se puedan hacer peticiones a nuestra API desde cualquier sitio
 gem 'rack-cors'
 
 ## Assets

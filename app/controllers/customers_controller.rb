@@ -1,4 +1,7 @@
 class CustomersController < ApplicationController
+  before_action :determine_scope, only: [:index]
+  before_action :paginate, only: [:index]
+
   respond_to :json
 
   def show
@@ -7,8 +10,13 @@ class CustomersController < ApplicationController
   end
 
   def index
-    @customers = current_user.customers
-    respond_with @customers
+    @customers = @scope
+    respond_with @customers, meta: {
+      currentPage: @scope.current_page,
+      totalPages: @scope.total_pages,
+      nextPage: @scope.next_page,
+      prevPage: @scope.prev_page
+    }
   end
 
   def create
@@ -29,6 +37,14 @@ class CustomersController < ApplicationController
   end
 
   private
+
+  def determine_scope
+    @scope = current_user.customers
+  end
+
+  def paginate
+    @scope = @scope.page(params[:page]).per(params[:per])
+  end
 
   def customer_params
     params.require(:customer).permit(
