@@ -93,7 +93,10 @@
       })
   });
 
-  app.run(function($rootScope) {
+  app.run(function($rootScope, $state) {
+    // Para usar $state en las vistas
+    $rootScope.$state = $state;
+
     // Comprueba si un objeto está vacío
     $rootScope.disableForm = function(model) {
       return Object.getOwnPropertyNames(model).length === 0;

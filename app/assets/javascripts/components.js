@@ -27,7 +27,9 @@
       restrict: "E",
       templateUrl: "pagination.html",
       scope: {
-        ctrl: "="
+        ctrl: "=",
+        state: "=",
+        statename: "="
       }
     };
   });
