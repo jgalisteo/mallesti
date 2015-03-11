@@ -36,7 +36,7 @@ RSpec.describe CustomersController, type: :controller do
     context "GET #index" do
       context "pagination" do
         before :all do
-          @customers = FactoryGirl.create_list(:customer, 50, user: @user)
+          FactoryGirl.create_list(:customer, 50, user: @user)
         end
 
         context "default" do
@@ -44,8 +44,8 @@ RSpec.describe CustomersController, type: :controller do
             get :index
           end
 
-          it "returns 25 per page" do
-            expect(response_body_json['customers'].size).to eql 25
+          it "returns 10 per page" do
+            expect(response_body_json['customers'].size).to eql 10
           end
 
           it "returns the current page" do
@@ -67,7 +67,7 @@ RSpec.describe CustomersController, type: :controller do
 
         context "with parameters" do
           before do
-            @per_page = 10
+            @per_page = 20
             @page = 2
             get :index, page: @page, per: @per_page
           end

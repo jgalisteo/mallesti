@@ -10,6 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require bootstrap/collapse
+//= require bootstrap/transition
 //= require angular
 //= require angular-ui-router
 //= require angular-local-storage

@@ -1,7 +1,7 @@
 (function() {
   var app = angular.module("mallesti", [
       "ui.router", "permission", "templates", "mallesti-auth", "mallesti-permission",
-      "mallesti-customer"
+      "mallesti-customer", "mallesti-components"
   ]);
 
   // Esto pasa el token y el email en cada petición que hagamos a la API
@@ -77,28 +77,38 @@
         url: "customers",
         templateUrl:  "customers-list.html",
         controller:   "CustomersController",
-        controllerAs: "customersCtrl",
+        controllerAs: "customersCtrl"
+      })
+      .state("main.customers-paginate", {
+        url: "customers/page/:page",
+        templateUrl: "customers-list.html",
+        controller:   "CustomersController",
+        controllerAs: "customersCtrl"
       })
       .state("main.customer", {
         url: "customers/:id",
         templateUrl:  "customer-info.html",
         controller:   "CustomerController",
-        controllerAs: "customerCtrl",
+        controllerAs: "customerCtrl"
       })
   });
 
   app.run(function($rootScope) {
+    // Comprueba si un objeto está vacío
     $rootScope.disableForm = function(model) {
       return Object.getOwnPropertyNames(model).length === 0;
     };
-  });
 
-  app.directive("mallestiNav", function() {
-    return {
-      restrict: "E",
-      templateUrl: "navbar.html",
-      controller: "LoginController",
-      controllerAs: "loginCtrl"
+    // Genera un array numérico desde 1 hasta el número dado
+    // para usarlo en los paginadores
+    $rootScope.pagesArray = function(number) {
+      var array = [];
+
+      for(i = 1; i <= number; i++) {
+        array.push(i);
+      }
+
+      return array;
     };
   });
 })();

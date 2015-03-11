@@ -24,10 +24,6 @@
           })
       };
 
-      scope.logout = function() {
-        AuthService.destroyUser();
-        $state.go("login");
-      };
     }]
   );
 

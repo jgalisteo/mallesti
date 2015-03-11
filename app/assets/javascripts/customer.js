@@ -1,40 +1,51 @@
 (function() {
   var app = angular.module("mallesti-customer", ["ui.router"]);
 
-  app.controller("CustomersController", ['$http', function($http) {
-    var scope = this;
-    // Para la tabla de clientes
-    scope.customers = [];
-    // Para el formulario de nuevo cliente
-    scope.model = {};
-    scope.errors = {};
+  app.controller("CustomersController",
+    [
+      '$http', '$rootScope', '$stateParams',
+      function($http, $rootScope, $stateParams) {
+        var scope = this;
+        // Para la tabla de clientes
+        scope.customers = [];
+        // Para la paginación
+        scope.totalPages = [];
+        scope.currentPage = $stateParams.page || 1;
+        scope.nextPage = null;
+        scope.prevPage = null;
+        // Para el formulario de nuevo cliente
+        scope.model = {};
+        scope.errors = {};
 
-    $http.get("/customers.json").success(function(data) {
-      scope.customers = data.customers
-    });
-
-    // Función para eliminar un cliente
-    scope.removeCustomer = function(customer) {
-      if(confirm("¿Estás seguro de que quieres eliminar el cliente " + customer.name + "?")) {
-        $http.delete("/customers/" + customer.id + ".json").success(function() {
-          var index = scope.customers.indexOf(customer);
-          scope.customers.splice(index, 1);
+        $http.get("/customers/page/" + scope.currentPage + ".json").success(function(data) {
+          scope.customers = data.customers;
+          scope.totalPages = $rootScope.pagesArray(data.meta.totalPages);
+          scope.nextPage = data.meta.nextPage;
+          scope.prevPage = data.meta.prevPage;
         });
-      }
-    };
 
-    // Función para añadir un nuevo cliente
-    scope.save = function() {
-      $http.post("/customers.json", {customer: scope.model})
-        .success(function(data) {
-          scope.customers.push(data.customer);
-          scope.model = {};
-          scope.errors = {};
-        })
-        .error(function(data) {
-          scope.errors = data.errors
-        });
-    };
+        // Función para eliminar un cliente
+        scope.removeCustomer = function(customer) {
+          if(confirm("¿Estás seguro de que quieres eliminar el cliente " + customer.name + "?")) {
+            $http.delete("/customers/" + customer.id + ".json").success(function() {
+              var index = scope.customers.indexOf(customer);
+              scope.customers.splice(index, 1);
+            });
+          }
+        };
+
+        // Función para añadir un nuevo cliente
+        scope.save = function() {
+          $http.post("/customers.json", {customer: scope.model})
+            .success(function(data) {
+              scope.customers.push(data.customer);
+              scope.model = {};
+              scope.errors = {};
+            })
+            .error(function(data) {
+              scope.errors = data.errors
+            });
+        };
   }]);
 
   app.controller("CustomerController", ['$http', '$stateParams', function($http, $stateParams) {

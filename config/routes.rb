@@ -9,8 +9,12 @@ Rails.application.routes.draw do
     post "/session" => "sessions#create"
   end
 
+  concern :paginatable do
+    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+  end
+
   # Rutas para los recursos relacionados con Customer
-  resources :customers, except: [:new, :edit] do
+  resources :customers, except: [:new, :edit], concerns: :paginatable do
   # Rutas para los recursos relacionados con Project
     resources :projects, only: [:index, :create]
   end

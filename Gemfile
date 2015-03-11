@@ -19,6 +19,7 @@ gem 'active_model_serializers'
 gem 'rack-cors'
 
 ## Assets
+gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'angular-rails-templates'
 source 'https://rails-assets.org' do
