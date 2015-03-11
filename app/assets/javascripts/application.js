@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap/modal
 //= require bootstrap/collapse
 //= require bootstrap/transition
 //= require angular

@@ -3,14 +3,14 @@
 
   app.controller("CustomersController",
     [
-      '$http', '$rootScope', '$stateParams',
-      function($http, $rootScope, $stateParams) {
+      '$http', '$rootScope', '$state',
+      function($http, $rootScope, $state) {
         var scope = this;
         // Para la tabla de clientes
         scope.customers = [];
         // Para la paginación
         scope.totalPages = [];
-        scope.currentPage = $stateParams.page || 1;
+        scope.currentPage = $state.params.page || 1;
         scope.nextPage = null;
         scope.prevPage = null;
         // Para el formulario de nuevo cliente
@@ -39,8 +39,7 @@
           $http.post("/customers.json", {customer: scope.model})
             .success(function(data) {
               scope.customers.push(data.customer);
-              scope.model = {};
-              scope.errors = {};
+              $state.go("main.customer", {id: data.customer.id});
             })
             .error(function(data) {
               scope.errors = data.errors

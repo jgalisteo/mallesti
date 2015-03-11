@@ -51,7 +51,7 @@
     <label for="customerCif">Cif</label>
     <input type="text" id="customerCif" class="form-control"
     ng-model="ctrl.model.cif">
-    <div class="alert alert-danger" ng-if="ctrl.cif.name">
+    <div class="alert alert-danger" ng-if="ctrl.errors.cif">
       {{ctrl.errors.cif.join(", ")}}
     </div>
   </div>

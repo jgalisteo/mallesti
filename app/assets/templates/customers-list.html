@@ -1,10 +1,20 @@
 <div class="row">
-  <div class="col-md-6">
-    <customers-table></customers-table>
-    <mallesti-pagination ctrl="customersCtrl" state="$state" statename="'main.customers-paginate'">
-    </mallesti-pagination>
-  </div>
-  <div class="col-md-6">
-    <customer-form ctrl="customersCtrl"></customer-form>
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#customer-form">
+    <span class="glyphicon glyphicon-plus"></span>
+    Añadir cliente
+  </button>
+  <customers-table></customers-table>
+  <mallesti-pagination ctrl="customersCtrl" state="$state" statename="'main.customers-paginate'">
+  </mallesti-pagination>
+
+  <!--modal con el formulario-->
+  <div class="modal fade" id="customer-form">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <customer-form ctrl="customersCtrl"></customer-form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
