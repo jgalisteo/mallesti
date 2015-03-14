@@ -96,4 +96,37 @@ RSpec.describe CustomersController, type: :controller do
       end
     end
   end
+
+  context "abilities" do
+    let(:user){ FactoryGirl.create(:user) }
+    let(:other_user){ FactoryGirl.create(:user) }
+    let(:customer){ FactoryGirl.create(:customer, user: user) }
+
+    before do
+      sign_in other_user
+    end
+
+    context "when other user tries to access" do
+      context "GET #show" do
+        it "returns 403 HTTP status code" do
+          get :show, id: customer.id.to_s
+          expect(response).to have_http_status :forbidden
+        end
+      end
+
+      context "PUT #update" do
+        it "returns 403 HTTP status code" do
+          put :update, id: customer.id.to_s, customer: @update_params
+          expect(response).to have_http_status :forbidden
+        end
+      end
+
+      context "DELETE #destroy" do
+        it "returns 403 HTTP status code" do
+          delete :destroy, id: customer.id.to_s
+          expect(response).to have_http_status :forbidden
+        end
+      end
+    end
+  end
 end

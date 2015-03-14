@@ -8,6 +8,9 @@ gem 'mongoid', '~> 4.0.1'
 # Para paginar nuestros listados
 gem 'kaminari'
 
+# Para permisos de usuario
+gem 'cancancan'
+
 # Autenticar usuarios (login, registro, recordar contraseña, confirmar cuenta,
 # bloquear cuenta, seguimiento...)
 gem 'devise',  '~> 3.4.1'

@@ -1,11 +1,11 @@
 class CustomersController < ApplicationController
+  load_and_authorize_resource only: [:show, :update, :destroy]
   before_action :determine_scope, only: [:index]
   before_action :paginate, only: [:index]
 
   respond_to :json
 
   def show
-    @customer = Customer.find(params[:id])
     respond_with @customer
   end
 
@@ -25,13 +25,11 @@ class CustomersController < ApplicationController
   end
 
   def update
-    @customer = Customer.find(params[:id])
     @customer.update_attributes(customer_params)
     respond_with @customer
   end
 
   def destroy
-    @customer = Customer.find(params[:id])
     @customer.destroy
     respond_with @customer
   end
